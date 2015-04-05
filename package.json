@@ -1,10 +1,10 @@
 {
     "name": "xbase64",
-    "description": "a customizable base64 implementation",
+    "description": "A customizable table base64 implementation",
     "version": "1.0.0",
     "keywords": [
         "base64",
-        "base64-url"
+        "base64url"
     ],
     "homepage": "https://github.com/vietor/xbase64",
     "repository": {
