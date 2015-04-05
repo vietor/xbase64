@@ -18,6 +18,8 @@ Require it within your module:
   var xbase64 = require('xbase64');
 ```
 
+---
+
 ### .encode(buffer)
 
 Encodes a buffer as a Base64 string.
