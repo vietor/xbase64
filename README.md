@@ -7,7 +7,7 @@ A customizable table base64 implementation. Remove the padding character.
 With [npm](http://npmjs.org) do:
 
 ```
-npm install urlsafe-base64
+npm install xbase64
 ```
 
 ## Usage
@@ -26,6 +26,8 @@ Encodes a buffer as a Base64 string.
 
 Decodes a Base64 string as a buffer.
 
+---
+
 ### .urlencode(buffer)
 
 Encodes a buffer as a URL Safe Base64 string.
@@ -34,16 +36,17 @@ Encodes a buffer as a URL Safe Base64 string.
 
 Decodes a URL Safe Base64 string as a buffer.
 
+---
 
 ### .create(string)
 
-Create a customize table Base64 coder.
+Create a customize table XBase64 object.
 
-#### .encode(buffer)
+#### XBase64.encode(buffer)
 
 Encodes a buffer as a XBase64 string.
 
-#### .decode(string)
+#### XBase64.decode(string)
 
 Decodes a XBase64 string as a buffer.
 
