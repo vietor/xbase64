@@ -20,14 +20,12 @@ function XBase64(table) {
     }());
 
     this.encode = function(data) {
+        if(typeof data == 'string')
+            data = new Buffer(data);
         var output = [];
         var step1 = Math.floor(data.length / 3) * 3;
         var step2 = data.length % 3;
         var pos, code1, code2, code3;
-
-        if(typeof data == 'string')
-            data = new Buffer(data);
-
         for(pos = 0; pos < step1; pos += 3) {
             code1 = data[pos];
             code2 = data[pos + 1];
