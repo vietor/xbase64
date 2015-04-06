@@ -22,6 +22,7 @@ function XBase64(table) {
     this.encode = function(data) {
         if(!Buffer.isBuffer(data))
             throw new Error('need a Buffer parameter');
+
         var output = [];
         var step1 = Math.floor(data.length / 3) * 3;
         var step2 = data.length % 3;
@@ -51,6 +52,9 @@ function XBase64(table) {
     };
 
     this.decode = function(text) {
+        if(typeof text != 'string')
+            throw new Error('need a string parameter');
+
         var step1 = Math.floor(text.length / 4) * 4;
         var step2 = text.length % 4;
         var output = new Buffer(step1 / 4 * 3 + (step2? (step2 - 1): 0));
