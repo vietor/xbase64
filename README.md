@@ -52,3 +52,8 @@ Encodes a buffer as a XBase64 string.
 
 Decodes a XBase64 string as a buffer.
 
+---
+
+### random(string)
+
+Generate new string from parameter string's random order.

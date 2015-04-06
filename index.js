@@ -93,12 +93,30 @@ function XBase64(table) {
     };
 }
 
+function randomString(text) {
+    var i = 0;
+    var out = [];
+    var chars = text.split("");
+    while(i < chars.length) {
+        var pos = Math.floor(Math.random() * chars.length);
+        if(chars[pos] != "USED") {
+            ++i;
+            out.push(chars[pos]);
+            chars[pos] = "USED";
+        }
+    }
+    return out.join("");
+}
+
 var base64 = new XBase64("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 var base64url = new XBase64("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
 
 module.exports = {
     create: function(table) {
         return new XBase64(table);
+    },
+    random: function(text) {
+        return randomString(text);
     },
     encode: function(data) {
         return base64.encode(data);
