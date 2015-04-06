@@ -20,8 +20,8 @@ function XBase64(table) {
     }());
 
     this.encode = function(data) {
-        if(typeof data == 'string')
-            data = new Buffer(data);
+        if(!Buffer.isBuffer(data))
+            throw new Error('need a Buffer parameter');
         var output = [];
         var step1 = Math.floor(data.length / 3) * 3;
         var step2 = data.length % 3;
