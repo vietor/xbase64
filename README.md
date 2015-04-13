@@ -23,16 +23,20 @@ Require it within your module:
 ### .encode(buffer, [padding])
 
 Encodes a buffer as a Base64 string.
+
 > xbase64.encode("i'm xbase64");
 >> output: aSdtIHhiYXNlNjQ
+
 > xbase64.encode("i'm xbase64", true)
 >> output: aSdtIHhiYXNlNjQ=
 
 ### .decode(string)
 
 Decodes a Base64 string as a buffer.
+
 > xbase64.decode("aSdtIHhiYXNlNjQ")
 >> output: i'm xbase64
+
 > xbase64.decode("aSdtIHhiYXNlNjQ=")
 >> output: i'm xbase64
 
