@@ -1,12 +1,23 @@
 'use strict';
 
-function XBase64(table) {
+var BASE64_TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+var BASE64URL_TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+function XBase64(table, padding) {
     if(typeof table != 'string')
         throw new Error('table must a string');
     if(table.length != 64)
         throw new Error('talbe must 64 characters');
     if(!/^[\x00-\x7F]+$/.test(table))
         throw new Error('table must ascii characters');
+    if(padding) {
+        if(typeof padding != 'string')
+            throw new Error('padding must a string');
+        if(padding.length != 1)
+            throw new Error('padding must 1 characters');
+        if(!/^[\x00-\x7F]+$/.test(table))
+            throw new Error('padding must ascii characters');
+    }
 
     var encoding = table.split('');
     var decoding = new Buffer(0x7F);
@@ -42,11 +53,17 @@ function XBase64(table) {
             output.push(encoding[code1 >> 2]);
             output.push(encoding[(code1 & 0x3) << 4 | (code2 >> 4)]);
             output.push(encoding[(code2 & 0xF) << 2]);
+            if(padding)
+                output.push(padding);
         }
         else if(step2 == 1) {
             code1 = data[pos];
             output.push(encoding[code1 >> 2]);
             output.push(encoding[(code1 & 0x3) << 4]);
+            if(padding) {
+                output.push(padding);
+                output.push(padding);
+            }
         }
         return output.join("");
     };
@@ -55,8 +72,19 @@ function XBase64(table) {
         if(typeof text != 'string')
             throw new Error('need a string parameter');
 
-        var step1 = Math.floor(text.length / 4) * 4;
-        var step2 = text.length % 4;
+        var length = text.length;
+        if(padding) {
+            if(length > 2 && text[length - 1] == padding)
+                --length;
+            if(length > 1 && text[length - 1] == padding)
+                --length;
+        }
+
+        var step1 = Math.floor(length / 4) * 4;
+        var step2 = length % 4;
+        if(step2 == 1)
+            throw new Error('incorect decode length');
+
         var output = new Buffer(step1 / 4 * 3 + (step2? (step2 - 1): 0));
         var pos, idx = 0, char1, char2, char3, char4;
         for(pos = 0; pos < step1; pos += 4) {
@@ -108,8 +136,9 @@ function randomString(text) {
     return out.join("");
 }
 
-var base64 = new XBase64("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
-var base64url = new XBase64("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
+var base64 = new XBase64(BASE64_TABLE);
+var base64pad = new XBase64(BASE64_TABLE, "=");
+var base64url = new XBase64(BASE64URL_TABLE);
 
 module.exports = {
     create: function(table) {
@@ -118,11 +147,14 @@ module.exports = {
     random: function(text) {
         return randomString(text);
     },
-    encode: function(data) {
-        return base64.encode(data);
+    encode: function(data, padding) {
+        if(!padding)
+            return base64.encode(data);
+        else
+            return base64pad.encode(data);
     },
-    decode: function(text) {
-        return base64.decode(text);
+    decode: function(text, padding) {
+        return base64pad.decode(text);
     },
     urlencode: function(data) {
         return base64url.encode(data);
