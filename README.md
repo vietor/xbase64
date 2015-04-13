@@ -24,21 +24,21 @@ Require it within your module:
 
 Encodes a buffer as a Base64 string.
 
-> xbase64.encode("i'm xbase64");
->> output: aSdtIHhiYXNlNjQ
+> xbase64.encode(new Buffer("i'm xbase64"));
+>> output string: aSdtIHhiYXNlNjQ
 
-> xbase64.encode("i'm xbase64", true)
->> output: aSdtIHhiYXNlNjQ=
+> xbase64.encode(new Buffer("i'm xbase64"), true)
+>> output string: aSdtIHhiYXNlNjQ=
 
 ### .decode(string)
 
 Decodes a Base64 string as a buffer.
 
 > xbase64.decode("aSdtIHhiYXNlNjQ")
->> output: i'm xbase64
+>> output to string: i'm xbase64
 
 > xbase64.decode("aSdtIHhiYXNlNjQ=")
->> output: i'm xbase64
+>> output to string: i'm xbase64
 
 ---
 
