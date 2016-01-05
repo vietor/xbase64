@@ -16,39 +16,59 @@ Require it within your module:
 
 ``` javascript
   var xbase64 = require('xbase64');
-```
+  ```
 
 ---
 
-### .encode(buffer, [padding])
+> *byte buffer* type defined.
+>> NodeJS: Buffer, string (input only)
+>> Browser: Number Array, string (input only)
 
-Encodes a buffer as a Base64 string.
+### .encode(bytebuffer, [padding])
 
-> xbase64.encode(new Buffer("i'm xbase64"));
+Encodes *byte buffer* as a Base64 string.
+
+> xbase64.encode("i'm xbase64");
 >> output string: aSdtIHhiYXNlNjQ
 
-> xbase64.encode(new Buffer("i'm xbase64"), true)
+> xbase64.encode("i'm xbase64", true)
 >> output string: aSdtIHhiYXNlNjQ=
 
 ### .decode(string)
 
-Decodes a Base64 string as a buffer.
+Decodes a Base64 string as a *byte buffer*.
 
 > xbase64.decode("aSdtIHhiYXNlNjQ")
->> output to string: i'm xbase64
+>> output to *byte buffer*: i'm xbase64
 
 > xbase64.decode("aSdtIHhiYXNlNjQ=")
+>> output to *byte buffer*: i'm xbase64
+
+
+### .decodeAsText(string)
+
+Decodes a Base64 string as a string.
+
+> xbase64.decodeAsText("aSdtIHhiYXNlNjQ")
+>> output to string: i'm xbase64
+
+> xbase64.decodeAsText("aSdtIHhiYXNlNjQ=")
 >> output to string: i'm xbase64
 
 ---
 
-### .urlencode(buffer)
+### .urlencode(bytebuffer)
 
-Encodes a buffer as a URL Safe Base64 string.
+Encodes *byte buffer* as a URL Safe Base64 string.
 
 ### .urldecode(string)
 
-Decodes a URL Safe Base64 string as a buffer.
+Decodes a URL Safe Base64 string as a *byte buffer*.
+
+### .urldecodeAsText(string)
+
+Decodes a URL Safe Base64 string as a string.
+
 
 ---
 
@@ -62,7 +82,12 @@ Encodes a buffer as a XBase64 string.
 
 #### XBase64.decode(string)
 
-Decodes a XBase64 string as a buffer.
+Decodes a XBase64 string as a *byte buffer*.
+
+#### XBase64.decodeAsText(string)
+
+Decodes a XBase64 string as a string.
+
 
 ---
 
