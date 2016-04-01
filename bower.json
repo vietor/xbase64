@@ -1,0 +1,26 @@
+{
+    "name": "xbase64",
+    "description": "Smart base64 encoder & decoder for Javascript",
+    "main": "xbase64.js",
+    "authors": [
+        "Vietor Liu <vietor.liu@gmail.com>"
+    ],
+    "license": "MIT",
+    "keywords": [
+        "base64",
+        "base64url",
+    ],
+    "homepage": "https://github.com/vietor/xbase64",
+    "moduleType": [
+        "amd",
+        "globals",
+        "node"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var xbase64 = require('../index.js');
+var xbase64 = require('../xbase64.js');
 
 var origin = 'I\'m running in xbase64';
 

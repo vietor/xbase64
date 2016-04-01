@@ -5,7 +5,7 @@ var prettify = require('gulp-jsbeautifier');
 var mocha = require('gulp-mocha');
 
 gulp.task('format-js', function() {
-    gulp.src('./index.js')
+    gulp.src('./xbase64.js')
         .pipe(prettify({
             config: '.jsbeautifyrc',
             mode: 'VERIFY_AND_WRITE'
