@@ -1,6 +1,6 @@
 # xbase64
 
-Smart base64 encoder & decoder for Javascript
+Smart base64 encoder and decoder for Javascript
 
 ## Installation
 

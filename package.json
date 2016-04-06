@@ -1,6 +1,6 @@
 {
     "name": "xbase64",
-    "description": "Smart base64 encoder & decoder for Javascript",
+    "description": "Smart base64 encoder and decoder for Javascript",
     "version": "1.2.0",
     "keywords": [
         "base64",
